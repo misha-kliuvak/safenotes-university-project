@@ -23,14 +23,14 @@
 
 # Use Case Diagram
 
-Entrepreneur -> (Реєстрація / Вхід)
-Entrepreneur -> (Створити компанію)
-Entrepreneur -> (Створити SAFE Note)
-Entrepreneur -> (Надіслати SAFE Note Angel)
+Entrepreneur -> (Реєстрація / Вхід) <br />
+Entrepreneur -> (Створити компанію) <br />
+Entrepreneur -> (Створити SAFE Note) <br />
+Entrepreneur -> (Надіслати SAFE Note Angel) <br /> <br />
 
-Angel -> (Реєстрація / Вхід)
-Angel -> (Створити компанію або профіль)
-Angel -> (Отримати SAFE Note)
-Angel -> (Переглянути SAFE Note)
-Angel -> (Підписати SAFE Note)
-Angel -> (Оплатити комісію платформи)
+Angel -> (Реєстрація / Вхід) <br />
+Angel -> (Створити компанію або профіль) <br />
+Angel -> (Отримати SAFE Note) <br />
+Angel -> (Переглянути SAFE Note) <br />
+Angel -> (Підписати SAFE Note) <br />
+Angel -> (Оплатити комісію платформи) <br />
