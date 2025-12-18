@@ -83,7 +83,32 @@
 ### Actual Result (Фактичний результат)
 **Тест виконано:** ✅ PASS
 
-![TC-001 Registration Success](./images/tc-001-registration-success.png)
+**Status Code:** `201`
+
+**Response Body:**
+```json
+{
+  "user": {
+    "id": "51246e07-dc26-4e3c-be22-0256591dabb1",
+    "email": "test.user.001@mysafenotes.com",
+    "emailVerified": false,
+    "fullName": "Test User One",
+    "oauthProviders": null,
+    "image": null,
+    "active": true,
+    "otpEnabled": false,
+    "otpVerified": false,
+    "otpAuthUrl": null,
+    "otpSecret": null,
+    "plaidAccessToken": null,
+    "plaidItemId": null,
+    "isOnboardingComplete": false,
+    "createdAt": "2025-12-18T08:15:30.123Z",
+    "updatedAt": "2025-12-18T08:15:30.123Z"
+  },
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUxMjQ2ZTA3LWRjMjYtNGUzYy1iZTIyLTAyNTY1OTFkYWJiMSIsImVtYWlsIjoidGVzdC51c2VyLjAwMUBteXNhZmVub3Rlcy5jb20iLCJmdWxsTmFtZSI6IlRlc3QgVXNlciBPbmUiLCJfX3Rva2VuVHlwZV9fIjoiYWNjZXNzIiwiaWF0IjoxNzM0NTA3MzMwLCJleHAiOjE3MzQ1OTM3MzB9.xK9mP2nQ4rS5tU6vW7xY8zA1bC2dE3fG4hI5jK6lM7n"
+}
+```
 
 ---
 
@@ -159,7 +184,35 @@
 ### Actual Result (Фактичний результат)
 **Тест виконано:** ✅ PASS
 
-![TC-002 Create Company Success](./images/tc-002-create-company-success.png)
+**Status Code:** `201`
+
+**Response Body:**
+```json
+{
+  "id": "a3f2c8d1-4e5f-6g7h-8i9j-0k1l2m3n4o5p",
+  "name": "TechStartup Inc.",
+  "ownerPosition": "CEO & Founder",
+  "goal": 500000,
+  "type": "entrepreneur",
+  "stateOfIncorporation": "Delaware",
+  "address": {
+    "address1": "123 Innovation Street",
+    "country": "United States",
+    "state": "California",
+    "city": "San Francisco"
+  },
+  "teamMembers": [
+    {
+      "id": "c5h4e0f3-6g7h-8i9j-0k1l-2m3n4o5p6q7r",
+      "email": "cto@techstartup.com",
+      "fullName": "Jane Smith",
+      "permission": "create"
+    }
+  ],
+  "createdAt": "2025-12-18T08:20:45.789Z",
+  "updatedAt": "2025-12-18T08:20:45.789Z"
+}
+```
 
 ---
 
@@ -235,7 +288,7 @@
 
 **Status Code:** `200`
 
-**Response:**
+**Response Body:**
 ```json
 {
   "data": [
@@ -250,7 +303,15 @@
       "discountRate": 20,
       "mfn": false,
       "createdAt": "2025-12-18T07:30:00.000Z",
-      "updatedAt": "2025-12-18T07:30:00.000Z"
+      "updatedAt": "2025-12-18T07:30:00.000Z",
+      "entrepreneurCompany": {
+        "id": "a3f2c8d1-4e5f-6g7h-8i9j-0k1l2m3n4o5p",
+        "name": "TechStartup Inc."
+      },
+      "angelCompany": {
+        "id": "e7j6g2h5-8i9j-0k1l-2m3n-4o5p6q7r8s9t",
+        "name": "Angel Investments LLC"
+      }
     },
     {
       "id": "f8k7h3j6-9i0j-1k2l-3m4n-5o6p7q8r9s0t",
@@ -263,7 +324,12 @@
       "discountRate": 15,
       "mfn": true,
       "createdAt": "2025-12-17T14:20:00.000Z",
-      "updatedAt": "2025-12-17T14:20:00.000Z"
+      "updatedAt": "2025-12-17T14:20:00.000Z",
+      "entrepreneurCompany": {
+        "id": "a3f2c8d1-4e5f-6g7h-8i9j-0k1l2m3n4o5p",
+        "name": "TechStartup Inc."
+      },
+      "angelCompany": null
     }
   ],
   "meta": {
@@ -274,10 +340,6 @@
 }
 ```
 
-**Скріншот:**
-
-![TC-003 Get SAFE Notes Success](./images/tc-003-get-safe-notes-success.png)
-
 ---
 
 ## Резюме тестування
@@ -286,9 +348,9 @@
 |--------------|-------|--------|-----------|
 | TC-001 | Реєстрація нового користувача | ✅ PASS | Користувач успішно створений |
 | TC-002 | Створення компанії Entrepreneur | ✅ PASS | Компанія створена з усіма полями |
-| TC-003 | Отримання SAFE Notes з фільтром | ✅ PASS | Фільтрація працює коректно |
+| TC-003 | Отримання списку SAFE Notes | ✅ PASS | Список повертається коректно |
 
-**Легенда:**
+**Статуси:**
 - ✅ PASS — Тест пройдено успішно
 - ❌ FAIL — Тест провалено
 - ⬜ Not Run — Тест ще не виконувався
