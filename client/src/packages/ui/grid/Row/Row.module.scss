@@ -1,0 +1,37 @@
+.row {
+  display: flex;
+  gap: var(--gap)
+}
+
+$justify-content: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    between: space-between,
+    around: space-arount,
+    eventy: space-evenly,
+);
+
+@each $key, $prop in $justify-content {
+  .justify-#{$key} {
+    justify-content: $prop;
+  }
+}
+
+$align-items: (
+    start: flex-start,
+    end: flex-end,
+    center: center,
+    baseline: baseline,
+    stretch: stretch,
+);
+
+@each $key, $prop in $align-items {
+  .align-#{$key} {
+    align-items: $prop;
+  }
+}
+
+.reverse {
+  flex-direction: row-reverse;
+}

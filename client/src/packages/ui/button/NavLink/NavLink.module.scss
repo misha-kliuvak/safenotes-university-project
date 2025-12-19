@@ -1,0 +1,46 @@
+@import '../../_colors/button-colors';
+
+.navLink {
+  text-decoration: none;
+  width: 100%;
+  font-weight: 400;
+  font-size: 16px;
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+
+  &.active {
+    & > div {
+      background-color: $navlink-primary-color;
+    }
+
+    svg {
+      path {
+        fill: $navlink-primary-color;
+      }
+    }
+  }
+
+
+  &.type-primary {
+    color: $navlink-primary-color;
+
+    &:hover {
+      color: $navlink-primary-hover-color;
+    }
+  }
+
+  &.type-white {
+    color: $navlink-white-color;
+
+    &:hover {
+      color: $navlink-white-hover-color;
+    }
+  }
+
+  &.none {
+    color: transparent;
+  }
+}

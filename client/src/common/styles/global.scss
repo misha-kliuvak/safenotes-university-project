@@ -1,0 +1,29 @@
+@import 'font-face';
+
+@tailwind components;
+@tailwind utilities;
+
+@import 'utils';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+*,
+html,
+body {
+  font-family: Inter, sans-serif;
+  font-weight: $fw-regular;
+}
+
+strong, b {
+  font-weight: $fw-bold;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

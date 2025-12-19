@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  postgres:
+    container_name: postgres
+    platform: linux/x86_64
+    image: postgres:latest
+    restart: always
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    environment:
+      - POSTGRES_USER=mysafenotes
+      - POSTGRES_PASSWORD=K3-o3qWp@sbXrfGek4QxqAj@
+      - POSTGRES_DB=mysafenotes
+    networks:
+      - msn_webnet
+    volumes:
+      - postgres:/var/lib/postgres/postgresql
+
+networks:
+  msn_webnet:
+
+volumes:
+  postgres:
+    name: msn_postgres_volume

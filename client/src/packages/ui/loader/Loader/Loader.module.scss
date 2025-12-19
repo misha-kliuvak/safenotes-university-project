@@ -1,0 +1,17 @@
+@import "../../_colors/loader-colors";
+
+.loader {
+  min-height: 50px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  height: 100%;
+  margin: auto
+}
+
+:export {
+  primary: $loader-primary-color;
+  secondary: $loader-secondary-color;
+  white: $loader-white-color;
+}

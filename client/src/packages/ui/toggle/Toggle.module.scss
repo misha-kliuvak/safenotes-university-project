@@ -1,0 +1,54 @@
+.toggleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+
+  &.disabled {
+    filter: grayscale(1);
+    opacity: 0.5;
+  }
+}
+
+.toggle {
+  cursor: pointer;
+  display: inline-block;
+}
+.toggleSwitch {
+  display: inline-block;
+  background: $neutral700;
+  border-radius: 16px;
+  width: 30px;
+  height: 16px;
+  position: relative;
+  vertical-align: middle;
+  transition: background 0.25s;
+  &:before,
+  &:after {
+    content: "";
+  }
+  &:before {
+    display: block;
+    background: linear-gradient(to bottom, #fff 0%,#eee 100%);
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    transition: left 0.25s;
+  }
+  .toggle:hover &:before {
+    background: linear-gradient(to bottom, #fff 0%,#fff 100%);
+  }
+  .toggleCheckbox:checked + & {
+    background: $primary800;
+    &:before {
+      left: 16px;
+    }
+  }
+}
+.toggleCheckbox {
+  position: absolute;
+  visibility: hidden;
+}

@@ -1,0 +1,64 @@
+.container {
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  border-radius: 8px;
+  font-size: 12px;
+
+  & > * {
+    font-weight: 500;
+  }
+}
+
+.type-success {
+  background: $primary200;
+  color: $primary800
+}
+
+.type-warning {
+  background: $warning100;
+  color: $warning400
+}
+
+.type-error {
+  background: $error100;
+  color: $error500
+}
+
+.type-failed {
+  background: $error600;
+  color: white;
+}
+
+.type-info {
+  background: $neutral100;
+  color: $neutral700;
+}
+
+.no-background {
+  background: transparent !important;
+  padding: 0;
+}
+
+.icon {
+  margin-left: 6px;
+  width: 10px;
+  height: 10px;
+  max-width: 10px;
+  max-height: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@screen lg {
+  .status {
+    white-space: nowrap;
+  }
+
+  .container {
+    padding: 5px 8px;
+    font-size: 11px;
+  }
+}

@@ -1,0 +1,23 @@
+.menuItem {
+  margin-bottom: 18px;
+
+  .link {
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    //@include transparentBackgroundColorMixin(0.2, $secondary);
+    border-radius: 8px;
+    width: 30px;
+    min-width: 30px;
+    height: 30px;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+
+

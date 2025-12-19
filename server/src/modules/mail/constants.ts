@@ -1,0 +1,26 @@
+export const EmailType = {
+  WELCOME: 'Welcome',
+  VERIFY: 'Verify',
+  REQUEST_INFO: 'RequestInfo',
+  RESET_PASSWORD: 'ResetPassword',
+  INVITE_TO_PLATFORM: 'InviteToPlatform',
+  INVITE_TO_TEAM: 'InviteToTeam',
+  NEW_SAFE: 'NewSafeNote',
+  DELETE_SAFE: 'DeleteSafeNote',
+  SAFE_SENT: 'SafeNoteSent',
+  SHARE_SAFE: 'ShareSafeNote',
+  SIGNED_SAFE: 'SignedSafeNote',
+  SIGNED_TERM_SHEET: 'SignedTermSheet',
+  NOTIFICATION_TO_SIGN: 'NotificationToSign',
+  NOTIFICATION_TO_PAY: 'NotificationToPay',
+  PAYMENT_SUCCESS: 'PaymentSuccess',
+  INVESTMENT_RECEIVED: 'InvestmentReceived',
+  OTP: 'Otp',
+  NEW_TERM_SHEET: 'NewTermSheet',
+  REQUEST_COMPANY_VERIFICATION: 'RequestCompanyVerification',
+  CONTACT_ATTEMPT: 'ContactAttempt',
+  SEND_FEEDBACK: 'SendFeedback',
+  REQUEST_PERMISSION: 'RequestPermission',
+};
+
+export const SendEmailEvent = EmailType;

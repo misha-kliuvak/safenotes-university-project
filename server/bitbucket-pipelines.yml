@@ -1,0 +1,204 @@
+image: node:latest
+
+definitions:
+  extract-env-script: &extract-env-script
+                        echo -e "\n\n";
+                        
+                        if [ -f set_env.sh ]; then
+                        
+                        echo "Reading env variables...";
+                        source set_env.sh;
+
+                        echo "Environment is set to <$environment>";
+
+                        else
+                        
+                        echo "No env variables was found";
+                        exit 1;
+                        
+                        fi;
+
+  caches:
+    dependencies-cache: node_modules
+
+  steps:
+    - step:
+        name: Clear cache if there are changes in the dependencies
+        script:
+          - pipe: atlassian/bitbucket-clear-cache:3.1.1
+            variables:
+              BITBUCKET_USERNAME: $BITBUCKET_USER_NAME
+              BITBUCKET_APP_PASSWORD: $BITBUCKET_APP_PASSWORD
+              CACHES: [ "node", "dependencies-cache" ]
+        condition:
+          changesets:
+            includePaths:
+              - package.json
+
+    - step: &set-dev-env
+        name: Set dev env
+        script:
+          - echo "Setting REMOTE_PATH to $DEV_REMOTE_PATH"
+          - echo "export REMOTE_PATH=$DEV_REMOTE_PATH;" >> set_env.sh
+          - echo "export EMAIL_TEMPLATES_BRANCH=dev;" >> set_env.sh
+        artifacts:
+          - set_env.sh
+
+    - step: &set-stage-env
+        name: Set stage env
+        script:
+          - echo "Setting REMOTE_PATH to $STAGE_REMOTE_PATH"
+          - echo "export REMOTE_PATH=$STAGE_REMOTE_PATH;" >> set_env.sh
+          - echo "export EMAIL_TEMPLATES_BRANCH=stage;" >> set_env.sh
+        artifacts:
+          - set_env.sh
+
+    - step: &define-env-from-variable
+        name: Define env variables
+        script:
+          - echo "Using <$environment> environment"
+          - >-
+            case $environment in
+            
+            dev)
+              REMOTE_PATH=$DEV_REMOTE_PATH;
+              EMAIL_TEMPLATES_BRANCH=dev
+            ;;
+            
+            stage)
+              REMOTE_PATH=$STAGE_REMOTE_PATH;
+              EMAIL_TEMPLATES_BRANCH=stage
+            ;;
+            
+            *)
+              echo "Invalid environment: <$environment>"
+              exit 1            
+            ;;
+            
+            esac
+          - >-
+            echo "export ENV=$environment" >> set_env.sh;
+            echo "export REMOTE_PATH=$REMOTE_PATH" >> set_env.sh;
+            echo "export EMAIL_TEMPLATES_BRANCH=$EMAIL_TEMPLATES_BRANCH" >> set_env.sh;
+        artifacts:
+          - set_env.sh
+
+    - step: &pull-changes
+        name: Pull changes
+        script:
+          - *extract-env-script
+
+          - pipe: atlassian/ssh-run:0.5.0
+            variables:
+              SSH_USER: $SSH_USER
+              SERVER: $SSH_SERVER
+              COMMAND: "cd $REMOTE_PATH; git checkout $BITBUCKET_BRANCH; git stash; git pull origin $BITBUCKET_BRANCH"
+    - step: &install-packages
+        name: Install packages
+        script:
+          - *extract-env-script
+          - pipe: atlassian/ssh-run:0.5.0
+            variables:
+              SSH_USER: $SSH_USER
+              SERVER: $SSH_SERVER
+              COMMAND: "cd $REMOTE_PATH; yarn install"
+    - step: &run-migrations
+        name: Run migrations
+        script:
+          - *extract-env-script
+          - pipe: atlassian/ssh-run:0.5.0
+            variables:
+              SSH_USER: $SSH_USER
+              SERVER: $SSH_SERVER
+              COMMAND: "cd $REMOTE_PATH; yarn migrate"
+    - step: &update-email-templates
+        name: Update email templates
+        script:
+          - *extract-env-script
+          - pipe: atlassian/ssh-run:0.5.0
+            variables:
+              SSH_USER: $SSH_USER
+              SERVER: $SSH_SERVER
+              COMMAND: "cd $REMOTE_PATH; EMAIL_TEMPLATES_BRANCH=$EMAIL_TEMPLATES_BRANCH yarn update:emails"
+    - step: &build-and-deploy
+        name: Build and deploy
+        script:
+          - *extract-env-script
+          - pipe: atlassian/ssh-run:0.5.0
+            variables:
+              SSH_USER: $SSH_USER
+              SERVER: $SSH_SERVER
+              COMMAND: "cd $REMOTE_PATH; yarn prebuild; bash ./scripts/deploy.sh"
+    - step: &clear-db
+        name: Clear database
+        script:
+          - *extract-env-script
+          - pipe: atlassian/ssh-run:0.5.0
+            variables:
+              SSH_USER: $SSH_USER
+              SERVER: $SSH_SERVER
+              COMMAND: "cd $REMOTE_PATH; bash ./scripts/clear-db.sh"
+
+pipelines:
+  pull-requests:
+    '**':
+      - step:
+          name: Install packages and build
+          caches:
+            - dependencies-cache
+            - node
+          script:
+            - yarn install
+            - export NODE_OPTIONS=--openssl-legacy-provider
+            - yarn build
+
+  custom:
+    deploy:
+      - variables:
+          - name: environment
+            default: dev
+            allowed-values:
+              - dev
+              - stage
+
+      - step: *define-env-from-variable
+      - step: *pull-changes
+      - parallel:
+          steps:
+            - step: *install-packages
+            - step: *run-migrations
+            - step: *update-email-templates
+      - step: *build-and-deploy
+
+
+    deploy-dev:
+      - step: *set-dev-env
+      - step: *pull-changes
+      - parallel:
+          steps:
+            - step: *install-packages
+            - step: *run-migrations
+            - step: *update-email-templates
+      - step: *build-and-deploy
+
+    deploy-stage:
+      - step: *set-stage-env
+      - step: *pull-changes
+      - parallel:
+          steps:
+            - step: *install-packages
+            - step: *run-migrations
+            - step: *update-email-templates
+      - step: *build-and-deploy
+
+    clear-db:
+      - variables:
+          - name: environment
+            default: dev
+            allowed-values:
+              - dev
+              - stage
+
+      - step: *define-env-from-variable
+      - step: *clear-db
+      - step: *run-migrations

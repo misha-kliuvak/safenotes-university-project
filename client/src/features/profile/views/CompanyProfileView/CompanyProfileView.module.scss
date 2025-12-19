@@ -1,0 +1,22 @@
+.container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  background: $color-neutral100;
+  column-gap: 32px;
+
+  // temp
+  padding: 50px;
+
+  .block {
+    width: 100%;
+  }
+
+  .companySidebar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+}

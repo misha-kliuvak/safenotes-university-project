@@ -1,0 +1,41 @@
+
+.menuButton {
+  width: 250px;
+  display: flex;
+  padding: 0;
+  height: 56px;
+
+  &.disabled {
+    background: transparent;
+    border: 1px solid red;
+    color: red;
+  }
+
+  .menuIconWrapper {
+    height: 56px;
+
+    &.disabled {
+      background: red;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 60px;
+    right: 0;
+    background: red;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+
+    .menuIcon {
+      transform: rotate(-180deg);
+    }
+
+    &.menuOpen {
+      .menuIcon {
+        transform: rotate(0deg);
+      }
+    }
+  }
+}
+

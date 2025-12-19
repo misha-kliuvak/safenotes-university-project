@@ -1,0 +1,14 @@
+@import '../_colors/tooltip-colors';
+
+.tooltip {
+  max-width: 300px;
+  background: $tooltip-background-color;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.0709408);
+  display: flex;
+  align-items: stretch;
+  flex-direction: column;
+  border-radius: 15px;
+  padding: 25px 30px;
+
+  //@include box-shadow(0px, 2px, 10px, $color-gray-400, 0.1);
+}

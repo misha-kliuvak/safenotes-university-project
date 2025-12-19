@@ -1,0 +1,70 @@
+.body-main {
+  font-size: 18px;
+  line-height: 170%;
+
+  @screen lg {
+    font-size: 16px;
+  }
+}
+
+.body-small {
+  font-size: 16px;
+  line-height: 160%;
+
+  @screen lg {
+    font-size: 14px;
+  }
+}
+
+.input-text {
+  font-weight: $fw-regular;
+  line-height: 120%;
+}
+
+.input-text, .subtitle {
+  font-size: 16px;
+
+  @screen lg {
+    font-size: 14px;
+  }
+}
+
+.subtitle {
+  font-weight: $fw-bold;
+  line-height: 110%;
+  text-transform: uppercase;
+}
+
+.caption {
+  font-size: 14px;
+
+  @screen lg {
+    font-size: 12px;
+  }
+}
+
+.button, .link, .label-small {
+  font-weight: $fw-medium;
+}
+
+.button, .link {
+  font-size: 18px;
+  line-height: 110%;
+
+  @screen lg {
+    font-size: 16px;
+  }
+}
+
+.label-small {
+  font-size: 12px;
+  line-height: 120%;
+}
+
+.clickable {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}

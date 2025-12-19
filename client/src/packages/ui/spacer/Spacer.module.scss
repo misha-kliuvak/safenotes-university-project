@@ -1,0 +1,13 @@
+.spacer {
+  background: transparent;
+  grid-column: auto;
+
+  width: var(--v-size);
+  height: var(--size);
+  min-width: var(--v-size);
+  min-height: var(--size);
+
+  &.vertical {
+    display: inline-block;
+  }
+}

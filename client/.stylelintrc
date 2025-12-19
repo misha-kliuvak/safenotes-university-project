@@ -1,0 +1,30 @@
+{
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-sass-guidelines",
+    "stylelint-config-recommended-scss",
+    "stylelint-config-prettier"
+  ],
+  "rules": {
+    "color-hex-case": "upper",
+    "color-hex-length": "long",
+    "selector-pseudo-class-no-unknown": [
+      true,
+      {
+        "ignorePseudoClasses": [
+          "global"
+        ]
+      }
+    ],
+    "order/properties-alphabetical-order": null,
+    "selector-max-compound-selectors": null,
+    "max-nesting-depth": null,
+    "selector-class-pattern": null,
+    "scss/at-extend-no-missing-placeholder": null,
+    "block-no-empty": null,
+    "selector-max-id": 1,
+    "declaration-property-value-disallowed-list": null,
+    "scss/at-rule-no-unknown": null,
+    "import-notation": null
+  }
+}

@@ -1,0 +1,8 @@
+@import '../_colors/card-colors';
+
+.card {
+  background: $card-background-color;
+  border-radius: 20px;
+  padding: var(--paddingY) var(--paddingX);
+  width: 100%;
+}

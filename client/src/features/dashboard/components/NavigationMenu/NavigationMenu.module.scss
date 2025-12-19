@@ -1,0 +1,69 @@
+.sidebar {
+  min-height: 100vh;
+  height: 100%;
+  background-color: $color-primary400;
+  padding: 36px 25px;
+  display: flex;
+  flex-direction: column;
+
+  @screen xl {
+    padding: 38px 0;
+    align-items: center;
+  }
+
+  .logo {
+    width: 165px;
+    height: auto;
+  }
+
+  .mobileLogo {
+    display: none;
+  }
+
+  .sidebarMobileBtn {
+    display: none;
+    width: 50px;
+    height: 20px;
+  }
+
+  @screen xl {
+    .logo {
+      display: none;
+    }
+
+    .mobileLogo {
+      display: block;
+    }
+
+    .sidebarBtn {
+      display: none;
+    }
+
+    .sidebarMobileBtn {
+      display: block;
+    }
+  }
+
+  .nav {
+    flex-grow: 1;
+  }
+
+  .navList {
+    list-style: none;
+    padding: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .listItem {
+    &:last-child {
+      margin-top: auto;
+
+      .link {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

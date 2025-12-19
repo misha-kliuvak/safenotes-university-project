@@ -1,0 +1,21 @@
+@import '../_colors/form-colors';
+
+.form {
+  display: grid;
+  grid-template-columns: auto;
+  row-gap: var(--row-gap);
+
+  [data-ignore-gap="true"] {
+    margin-top: calc(var(--row-gap) * -1)
+  }
+}
+
+.formItem {
+  text-align: left;
+  position: relative;
+  width: 100%;
+}
+
+.error {
+  color: $form-error-color;
+}

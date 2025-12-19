@@ -1,0 +1,41 @@
+export enum Color {
+  // Primary colors
+  primary0 = 'color-primary0',
+  primary100 = 'color-primary100',
+  primary200 = 'color-primary200',
+  primary300 = 'color-primary300',
+  primary400 = 'color-primary400',
+  primary500 = 'color-primary500',
+
+  // Neutral colors
+  neutral0 = 'color-neutral0',
+  neutral100 = 'color-neutral100',
+  neutral200 = 'color-neutral200',
+  neutral300 = 'color-neutral300',
+  neutral400 = 'color-neutral400',
+  neutral500 = 'color-neutral500',
+
+  // Success colors
+  success0 = 'color-success0',
+  success100 = 'color-success100',
+  success200 = 'color-success200',
+  success300 = 'color-success300',
+  success400 = 'color-success400',
+  success500 = 'color-success500',
+
+  // Warning colors
+  warning0 = 'color-warning0',
+  warning100 = 'color-warning100',
+  warning200 = 'color-warning200',
+  warning300 = 'color-warning300',
+  warning400 = 'color-warning400',
+  warning500 = 'color-warning500',
+
+  // Error colors
+  error0 = 'color-error0',
+  error100 = 'color-error100',
+  error200 = 'color-error200',
+  error300 = 'color-error300',
+  error400 = 'color-error400',
+  error500 = 'color-error500'
+}

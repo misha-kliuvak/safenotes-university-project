@@ -1,0 +1,4 @@
+[submodule "src/lib/email-templates"]
+	path = src/lib/email-templates
+	url = git@bitbucket.org:xicay_tech/mysafenotes-email-templates.git
+    branch = main

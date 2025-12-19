@@ -1,0 +1,94 @@
+@import "../_colors/input-colors";
+
+.container {
+  width: 100%;
+
+  &.disabled {
+    opacity: 40%;
+  }
+}
+
+.wrapper {
+  position: relative;
+}
+
+label {
+  text-align: left;
+}
+
+.input {
+  align-items: center;
+  background-color: $input-background-color;
+  border: 1px solid $input-border-color;
+  border-radius: 12px;
+  color: $input-text-color;
+  display: flex;
+  font-size: 16px;
+  height: 51px;
+  outline: none;
+  padding: 0 16px;
+  transition: 0.3s border linear;
+  width: 100%;
+
+  &.withAddonBefore {
+    padding-left: 50px;
+  }
+
+  &.withAddonAfter {
+    padding-right: 50px;
+  }
+
+  &.invalid {
+    border: 1px solid $input-invalid-color;
+    color: $input-invalid-color;
+  }
+
+  &.hasData:not(.invalid) {
+    border: 1px solid $input-text-color;
+  }
+
+  ::placeholder {
+    color: $input-placeholder-color
+  }
+
+  &:focus:not(.invalid),
+  &:active:not(.invalid),
+  &:hover:not(.invalid) {
+    border: 1px solid $input-text-color;
+  }
+}
+
+.addon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addonBefore {
+  @extend .addon;
+
+  left: 16px;
+  font-size: 14px;
+}
+
+.addonAfter {
+  @extend .addon;
+
+  right: 16px;
+  font-size: 14px;
+}
+
+@screen lg {
+  label {
+    font-size: 12px;
+  }
+
+  .input {
+    font-size: 12px;
+    height: 40px;
+    padding: 0 16px;
+  }
+}
